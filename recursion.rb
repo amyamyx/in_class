@@ -105,6 +105,43 @@ class Array
   end
 end
 
+class Array
+  
+  def subsets
+    return [[]] if empty?
 
+    
+    left = self[0...-1].subsets
+    right = left.map { |el| el + [self.last] }
+    
+    left + right
+  end
+end
 
+def subsets(arr)
+  return [[]] if arr.empty?
+  
+  left = subsets(arr[0...-1])
+  right = left.map { |el| el + [arr.last] }
+  
+  left + right
+end
 
+def permutations(arr)
+
+  return arr if arr.length == 1
+  result = []
+  
+  this_el = arr.last
+  sub_arr = permutations(arr[0...-1])
+  
+  arr.length.times do |i|
+    sub_arr.each do |el|
+      a = el.take(i) + [this_el] + el.drop(i)
+      result << a 
+    end
+  end
+   result
+end
+
+p permutations([1, 2, 3]) 

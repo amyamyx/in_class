@@ -39,9 +39,21 @@ class Array
     self.each do |el|
       dupped += el.is_a?(Array) ? [el.deep_dup] : [el]
     end
+    
     dupped
   end
 end
 
-
+def fib(n)
+  return [] if n == 0
+  return [0] if n == 1
+  return [0, 1] if n == 2
+  
+  result = [0, 1]
+  until result.length == n
+    result << result[-1] + result[-2]
+  end
+  
+  result
+end
 

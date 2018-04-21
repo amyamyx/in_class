@@ -30,3 +30,18 @@ def exp2(base, n)
     base * (exp2(base, (n - 1) / 2) ** 2)
   end
 end
+
+class Array
+  
+  def deep_dup
+    dupped = []
+    
+    self.each do |el|
+      dupped += el.is_a?(Array) ? [el.deep_dup] : [el]
+    end
+    dupped
+  end
+end
+
+
+

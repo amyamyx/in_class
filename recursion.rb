@@ -71,7 +71,40 @@ def bsearch(arr, n)
     a = bsearch(arr[mid_i + 1..-1], n)
     return mid_i + a + 1 unless a.nil?
   end 
+  
   nil
 end
+
+class Array
+  def merge_sort
+    return [first] if length == 1
+    
+    mid_i = length / 2
+    left = self[0...mid_i].merge_sort
+    right = self[mid_i..-1].merge_sort
+    
+    merge(left, right)
+  end
+  
+  private
+  def merge(left, right)
+    
+    merged = []
+    
+    until left.empty? || right.empty?
+      
+      case left[0] <=> right[0]
+      when -1
+        merged << left.shift
+      else
+        merged << right.shift
+      end
+    end
+    
+    merged + left + right
+  end
+end
+
+
 
 

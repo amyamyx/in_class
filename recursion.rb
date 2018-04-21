@@ -13,4 +13,20 @@ def sum_arr_iter(arr)
   arr.reduce(:+)
 end
 
-def
+def exp1(base, n)
+  return 1 if n == 0
+  return base if n == 1
+  
+  base * exp1(base, n - 1)
+end
+
+def exp2(base, n)
+  return 1 if n == 0
+  return base if n == 1
+  
+  if n.even?
+    exp2(base, n / 2) ** 2
+  else
+    base * (exp2(base, (n - 1) / 2) ** 2)
+  end
+end

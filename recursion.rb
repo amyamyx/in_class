@@ -1,3 +1,4 @@
+require 'byebug'
 def range(start, finish)
   return [] if start == finish
   a = [start] + range(start + 1, finish)
@@ -56,4 +57,21 @@ def fib(n)
   
   result
 end
+
+def bsearch(arr, n)
+  mid_i = arr.length / 2
+  
+  case arr[mid_i] <=> n
+  when 1
+    a = bsearch(arr[0...mid_i], n)
+    return a unless a.nil?
+  when 0 
+    return mid_i
+  when -1
+    a = bsearch(arr[mid_i + 1..-1], n)
+    return mid_i + a + 1 unless a.nil?
+  end 
+  nil
+end
+
 
